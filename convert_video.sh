@@ -1,10 +1,13 @@
 #!/bin/bash
 
+# フレームレート
+FRAME_RATE=20
+
 # 画像生成
-ffmpeg -i ./assets/target/CADC2024_top.mp4 -r 20 -q:v 1 ./assets/frames/frame%d.jpg
+ffmpeg -i ./assets/target/CADC.mp4 -r $FRAME_RATE -q:v 1 ./assets/frames/frame%d.jpg
 
 # WebP変換を行うNode.jsスクリプト
-node - << 'EOF'
+node - <<EOF
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
@@ -24,21 +27,20 @@ fs.readdir(inputDir, (err, files) => {
         return console.error('Unable to scan directory: ' + err);
     }
 
-    // 各ファイルを処理
+    // JPEGファイルのみを対象とする
     files.forEach(file => {
-        // JPEGファイルのみを対象とする
-        if (path.extname(file).toLowerCase() === '.jpg' || path.extname(file).toLowerCase() === '.jpeg') {
+        if (['.jpg', '.jpeg'].includes(path.extname(file).toLowerCase())) {
             const inputFilePath = path.join(inputDir, file);
             const outputFilePath = path.join(outputDir, path.basename(file, path.extname(file)) + '.webp');
 
             sharp(inputFilePath)
-                .webp({ quality: 95 })
-                .toFile(outputFilePath, (err, info) => {
-                    if (err) {
-                        console.error('Error converting file:', file, err);
-                    } else {
-                        console.log('Successfully converted:', file, 'to', outputFilePath);
-                    }
+                .webp({ quality: 100 })
+                .toFile(outputFilePath)
+                .then(() => {
+                    console.log('Successfully converted: ' + file + ' to ' + outputFilePath);
+                })
+                .catch(err => {
+                    console.error('Error converting file: ' + file, err);
                 });
         }
     });
