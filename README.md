@@ -1,6 +1,6 @@
-# Video Conversion Project
+# video_converter
 
-このプロジェクトは、MP4動画からフレームを抽出し、各フレームを高品質なWebP形式に変換するためのスクリプトを提供します。使用されるツールにはFFmpeg、Node.js、およびSharpライブラリが含まれます。
+このプロジェクトは、MP4 動画からフレームを抽出し、各フレームを高品質な WebP 形式に変換するためのスクリプトを提供します。使用されるツールには FFmpeg、Node.js、および Sharp ライブラリが含まれます。
 
 ## 目次
 
@@ -11,32 +11,28 @@
 
 ## 必要な環境
 
-- Node.js (pnpmパッケージマネージャを推奨)
 - FFmpeg
-- pnpm
+- cwebp
 
 ## インストール
 
-### FFmpegのインストール
+### FFmpeg のインストール
 
 ```sh
 brew install ffmpeg
 ```
 
-### Node.jsのインストール
-```sh
-brew install node
-npm install -g pnpm
-```
+### cwebp のインストール
 
-### プロジェクトの依存関係のインストール
 ```sh
-pnpm install
+brew install cwebp
 ```
 
 ## 使い方
+
 ```sh
-pnpm run convert2webp
+chmod +x convert_video.sh
+./convert_video.sh
 ```
 
 ## ディレクトリ構成
@@ -44,12 +40,9 @@ pnpm run convert2webp
 ```
 video_conversion/
 ├── assets/
-│   ├── frames/         # フレームを保存するディレクトリ（スクリプトが生成）
+│   ├── frames/         # フレーム(JPG)を保存するディレクトリ（スクリプトが生成）
+│   ├── webp/           # WebPファイルを保存するディレクトリ（スクリプトが生成）
 │   └── target/         # 対象のMP4ファイルを格納
 │       └── CADC2024_top.mp4  # 対象のMP4ファイル
-├── output/             # 出力されるWebPファイルの保存ディレクトリ（スクリプトが生成）
-├── convert_video.sh    # 統合スクリプト
-├── package.json        # Node.jsプロジェクト設定
-└── node_modules/       # 依存関係（sharpなどがインストールされる）
+└──  convert_video.sh    # 統合スクリプト
 ```
-# video_converter
