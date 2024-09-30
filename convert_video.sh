@@ -3,7 +3,7 @@
 # フレームレート
 FRAME_RATE=20
 # 画質
-WEBP_QUALITY=50
+WEBP_QUALITY=80
 
 # 入力動画ファイルのパス
 INPUT_VIDEO="./assets/target/CADC.mp4"

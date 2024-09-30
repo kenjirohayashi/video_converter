@@ -11,6 +11,7 @@
 
 ## 必要な環境
 
+- macOS
 - FFmpeg
 - cwebp
 
@@ -42,7 +43,6 @@ video_conversion/
 ├── assets/
 │   ├── frames/         # フレーム(JPG)を保存するディレクトリ（スクリプトが生成）
 │   ├── webp/           # WebPファイルを保存するディレクトリ（スクリプトが生成）
-│   └── target/         # 対象のMP4ファイルを格納
-│       └── CADC2024_top.mp4  # 対象のMP4ファイル
+│   └── target/         # 対象のMP4ファイルを格納（チームの管理者から受け取ってください）
 └──  convert_video.sh    # 統合スクリプト
 ```
